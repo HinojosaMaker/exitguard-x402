@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: exit-check-x402
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PAY_TO
+        sync: false   # pegás tu wallet de Base al desplegar
