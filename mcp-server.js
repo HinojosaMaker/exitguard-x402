@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // Servidor MCP de ExitGuard: expone los MISMOS nodos como herramientas que un
 // agente de IA descubre y llama. MCP es el protocolo por el que los compradores
 // reales (agentes) encuentran tools; x402 es cómo pagan. Aquí cada nodo es las
