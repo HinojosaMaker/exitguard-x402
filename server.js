@@ -55,6 +55,23 @@ console.log(`nodos cargados: ${nodes.map(n => n.id).join(", ")}`);
 
 // Monetizacion x402: el precio de cada ruta sale del nodo. El middleware
 // responde HTTP 402 si no viene pago; el agente paga en USDC y reintenta.
+// Emite el reto x402 tambien como header PAYMENT-REQUIRED (base64 JSON) y
+// WWW-Authenticate, para que los indices de discovery (402index, x402scan) que
+// sondean por HEADER detecten el servicio (el body ya lo lleva; esto es ademas).
+app.use((req, res, next) => {
+  const origJson = res.json.bind(res);
+  res.json = (body) => {
+    try {
+      if (res.statusCode === 402 && body && body.x402Version) {
+        res.setHeader("PAYMENT-REQUIRED", Buffer.from(JSON.stringify(body)).toString("base64"));
+        res.setHeader("WWW-Authenticate", "x402");
+      }
+    } catch (e) { /* no romper la respuesta por el header */ }
+    return origJson(body);
+  };
+  next();
+});
+
 app.use(paymentMiddleware(
   PAY_TO,
   {
