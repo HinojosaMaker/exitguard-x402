@@ -1,6 +1,6 @@
 {
   "name": "exit-check-x402",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "ExitGuard MCP: pre-trade on-chain safety oracles for AI trading agents (Solana exit liquidity, rug-in-progress, escape curve). Paid per-call via x402/USDC on Base.",
   "type": "module",
   "main": "server.js",
@@ -10,7 +10,9 @@
   "dependencies": {
     "@coinbase/x402": "^2.1.0",
     "express": "^4.21.0",
-    "x402-express": "^1.2.0"
+    "x402-express": "^1.2.0",
+    "x402-fetch": "^0.6.0",
+    "viem": "^2.21.0"
   },
   "bin": {
     "exitguard-mcp": "mcp-server.js"
