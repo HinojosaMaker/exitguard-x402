@@ -72,7 +72,7 @@
 <script>
 // intenta el túnel público primero, luego localhost
 const ENDPOINTS = [
-  "https://smile-dogs-grow-pendant.trycloudflare.com/stats",
+  "https://upc-travelers-hull-veterinary.trycloudflare.com/stats",
   "http://localhost:8402/stats"
 ];
 let lastPaid = 0, lastBal = 0;

@@ -1,2 +1,8 @@
 node_modules/
 *.log
+.env*
+run.log
+tunnel*.log
+regtunnel.log
+*.out.log
+*.err.log
