@@ -106,6 +106,13 @@ async function usdcBalance(addr) {
 }
 
 // --- DESCUBRIMIENTO: agentes y directorios (Bazaar, x402-list) leen esto ---
+// verificacion de dominio para 402index (archivo con el hash). Lee de env para
+// re-verificar sin tocar codigo; default = hash del claim actual (no es secreto).
+app.get("/.well-known/402index-verify.txt", (_req, res) => {
+  res.type("text/plain").send(process.env.INDEX402_VERIFY_HASH ||
+    "2880ac60beb1dcacd5d45678a4ae5129a5ebdd5cddcc5ebf39c7a7cd4f013e77");
+});
+
 app.get("/.well-known/x402.json", (req, res) => {
   res.set("Access-Control-Allow-Origin", "*");
   res.json({
