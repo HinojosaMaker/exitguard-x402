@@ -6,3 +6,5 @@ tunnel*.log
 regtunnel.log
 *.out.log
 *.err.log
+mcpb-build/
+*.mcpb
