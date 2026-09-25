@@ -7,6 +7,7 @@ import express from "express";
 import { paymentMiddleware } from "x402-express";
 import { readFileSync } from "fs";
 import { loadNodes, paymentConfig, mount, discovery, runSelfTests } from "./registry.js";
+import { loop as radarLoop, page as radarPage } from "./radar.js";
 
 const app = express();
 
@@ -257,6 +258,10 @@ app.get("/", (_req, res) => res.json({
   health: "GET /health", discovery: "GET /.well-known/x402.json",
   payment: "x402, USDC, network: base",
 }));
+
+app.get("/radar", (_req, res) => res.type("html").send(radarPage()));
+
+radarLoop();  // escaneo del firehose en segundo plano (funnel publico)
 
 const PORT = process.env.PORT || 8402;
 app.listen(PORT, () => console.log(`ExitGuard (motor modular) escuchando en :${PORT}, cobra a ${PAY_TO}`));
